@@ -21,7 +21,7 @@ pipeline {
         stage('Build Images') {
             steps {
                 script {
-                    bat 'docker build -t aditya/insider-threat-awareness:code .'
+                    bat 'docker build -t adityanaegi/insider-threat-awareness:code .'
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Push Images to Hub') {
             steps {
                 withDockerRegistry([ credentialsId: "aditya-dockerhub", url: "" ]) {
-                    bat 'docker push aditya/insider-threat-awareness:code'
+                    bat 'docker push adityanaegi/insider-threat-awareness:code'
                 }
             }
         }
