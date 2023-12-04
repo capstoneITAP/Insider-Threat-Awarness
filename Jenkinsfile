@@ -49,6 +49,13 @@ pipeline {
                 }
             }
         }
+        stage('Push Images to Hub') {
+            steps {
+                withDockerRegistry([ credentialsId: "aditya-dockerhub", url: "" ]) {
+                    bat 'docker push adityanaegi/insider-threat-awareness:code'
+                }
+            }
+        }
     }
 post {
         // always {
