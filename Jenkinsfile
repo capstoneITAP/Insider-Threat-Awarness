@@ -22,7 +22,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    bat 'npm.cmd install'
+                    bat 'npm install'
                 }
             }
         }
