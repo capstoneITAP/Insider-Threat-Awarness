@@ -26,19 +26,19 @@ pipeline {
             }
         }
 
-        // stage('Push Images to Hub') {
-        //     steps {
-        //         withDockerRegistry([ credentialsId: "omgholap-dockerhub", url: "" ]) {
-        //             bat 'docker push omgholap/mnist-capstone-new:code'
-        //         }
-        //     }
-        // }
+        stage('Push Images to Hub') {
+            steps {
+                withDockerRegistry([ credentialsId: "aditya-dockerhub", url: "" ]) {
+                    bat 'docker push aditya/insider-threat-awareness:code'
+                }
+            }
+        }
     }
 post {
-        always {
-            // This block will always be executed, regardless of the build result
-            bat 'docker logout'
-        }
+        // always {
+        //     // This block will always be executed, regardless of the build result
+        //     bat 'docker logout'
+        // }
 
         failure {
             emailext(
