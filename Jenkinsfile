@@ -18,27 +18,43 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Build Images') {
+
+        stage('Install Dependencies') {
             steps {
                 script {
-                    bat 'docker build -t aditya/insider-threat-awareness:code .'
+                    bat 'npm.cmd install'
                 }
             }
         }
 
-        // stage('Push Images to Hub') {
-        //     steps {
-        //         withDockerRegistry([ credentialsId: "omgholap-dockerhub", url: "" ]) {
-        //             bat 'docker push omgholap/mnist-capstone-new:code'
-        //         }
-        //     }
-        // }
+        stage('Unit Testing') {
+            steps {
+                script {
+                    bat 'npm.cmd test'
+                }
+            }
+        }
+        stage('Build Images') {
+            steps {
+                script {
+                    bat 'docker build -t adityanaegi/insider-threat-awareness:code .'
+                }
+            }
+        }
+
+        stage('Push Images to Hub') {
+            steps {
+                withDockerRegistry([ credentialsId: "aditya-dockerhub", url: "" ]) {
+                    bat 'docker push adityanaegi/insider-threat-awareness:code'
+                }
+            }
+        }
     }
 post {
-        always {
-            // This block will always be executed, regardless of the build result
-            bat 'docker logout'
-        }
+        // always {
+        //     // This block will always be executed, regardless of the build result
+        //     bat 'docker logout'
+        // }
 
         failure {
             emailext(
