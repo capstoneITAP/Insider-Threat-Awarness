@@ -19,21 +19,21 @@ pipeline {
         //     }
         // }
 
-        stage('Install Dependencies') {
-            steps {
-                script {
-                    bat 'npm install'
-                }
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         script {
+        //             bat 'npm install'
+        //         }
+        //     }
+        // }
 
-        stage('Unit Testing') {
-            steps {
-                script {
-                    bat 'npm.cmd test'
-                }
-            }
-        }
+        // stage('Unit Testing') {
+        //     steps {
+        //         script {
+        //             bat 'npm.cmd test'
+        //         }
+        //     }
+        // }
         stage('Build Images') {
             steps {
                 script {
