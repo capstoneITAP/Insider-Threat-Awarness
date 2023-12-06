@@ -11,21 +11,23 @@ pipeline {
             }
         }
 
-        // stage('Unit Tests') {
-        //     steps {
-        //         script {
-        //             bat 'C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pytest'
-        //         }
-        //     }
-        // }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    bat 'npm install'
+                }
+            }
+        }
+        
+        stage('Unit Tests') {
+            steps {
+                script {
+                    bat 'npm.cmd test'
+                }
+            }
+        }
 
-        // stage('Install Dependencies') {
-        //     steps {
-        //         script {
-        //             bat 'npm install'
-        //         }
-        //     }
-        // }
+
 
         // stage('Unit Testing') {
         //     steps {
